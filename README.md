@@ -1,44 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Missing Numbers
 
-## Available Scripts
+Url
+https://www.hackerrank.com/challenges/missing-numbers/problem
 
-In the project directory, you can run:
+## Solución del problema
 
-### `yarn start`
+```javascript
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    const removeDuplicate = (value, index, self) => {
+        return self.indexOf(value) === index;
+    }
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+    // Complete the missingNumbers function below.
+    function missingNumbers(arr, brr) {
+        arr.map(c => { 
+                var i = brr.indexOf(c);
+                brr.splice(i, 1) 
+            });
+        return brr.filter(removeDuplicate)
+            .sort((c, d) => parseInt(c) - parseInt(d));
+    }
+```
 
-### `yarn test`
+## Proyecto
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+No entendí muy bien la forma de solucionarlo, así que se montó un proyeto en React con [hooks](https://es.reactjs.org/docs/hooks-reference.html) + [TypeScript](https://www.typescriptlang.org/)
 
-### `yarn build`
+El proyecto no tiene maquetación ni diseño
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Donde esta el código importante
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+La solución aplicada del proyecto se puede encontrar en la ruta:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    src/app/core/hooks/index.tsx
+        - useMissingNumbers() / handleMissingNumbers()
 
-### `yarn eject`
+Tiene alguna funciones adicionales:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    1. funcion de procesamiento de los datos de entrada
+    2. extraer los `array` que se mutarán 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Como correr el proyecto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    1. instalar paquetes de npm
+    2. correr `yarn start` o `npm run start`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Pruebas unitarias locales
 
-## Learn More
+    Se crearon varias pruebas unitarias locales con jest donde probamos el hook que se creo para la solución del ejercicio
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    se corren con `yarn test` o `npm run test`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    Las pruebas unitarias con las mismas que corren en el sitio de "hackerrank"
+    
+    ver: 
+        tests: __tests__/hooks/useMissngNumbers.test.tsx
+        mocks: __mocks__/useMissngNumbers.mock.tsx
+
+
